@@ -3,7 +3,7 @@ from config import token # импорт токена
 
 bot = telebot.TeleBot(token) 
 
-@bot.message_handler(commands=['start'])
+@bot.message_handler(commands=['start', 'hello'])
 def start(message):
     bot.reply_to(message, "Привет! Я бот для управления чатом.")
 
