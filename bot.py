@@ -3,7 +3,7 @@ from config import token # импорт токена
 
 bot = telebot.TeleBot(token) 
 
-@bot.message_handler(commands=['start', 'hello'])
+@bot.message_handler(commands=['start'])
 def start(message):
     bot.reply_to(message, "Привет! Я бот для управления чатом.")
 
@@ -22,10 +22,5 @@ def ban_user(message):
             bot.reply_to(message, f"Пользователь @{message.reply_to_message.from_user.username} был забанен.")
     else:
         bot.reply_to(message, "Эта команда должна быть использована в ответ на сообщение пользователя, которого вы хотите забанить.")
-
-@bot.chat_join_request_handler()
-def make_some(message: telebot.types.ChatJoinRequest):
-    bot.send_message(message.chat.id, 'I accepted a new user!')
-    bot.approve_chat_join_request(message.chat.id, message.from_user.id)
 
 bot.infinity_polling(none_stop=True)
